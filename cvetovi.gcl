@@ -1,0 +1,170 @@
+ang_picture 0 0 140 100
+ang_origin 0 0 
+point X 5 0
+point O 0 0 
+distance d X O
+background 20 150 220
+
+point S 0 0 45 45
+
+color 0 200 0
+number i 0
+number r 1
+number e 2.72
+number j 0
+number m 0
+%trava
+number x 50
+number y 50
+while { j<40 }
+{
+ang_draw_parametric_curve t {0;t<30;t+0.05}{t;m}
+expression m { m+0.01 }
+expression j { j +1 }
+}
+color 240 0 0
+%cvetovi
+ number l 0
+number p 0
+number f 0
+ang_origin 12 50
+number g 0
+while { p < 3 }
+{
+%namestanje da za p=2 bude slicno kao za p=0
+if_then_else { p==2 }
+{
+expression l {1}
+expression g {2}
+
+}
+{
+expression l {1+l/3}
+}
+
+if_then_else { p==1 }
+{
+expression f {1}
+
+}
+{
+expression f {0}
+}
+while { i < 50 }
+{
+
+expression r { r - 0.05 }
+
+color 180 50 90
+ang_draw_parametric_curve t {0;t<6.3;t+0.05}{(1-sin(5*t))*r*l*sin(t)/2+p*4+l/4;(1-sin(5*t))*r*l*cos(t)/2-p/2+g/2+f*2}
+color 200 0 0
+ang_origin 24 65
+ang_draw_parametric_curve t {0;t<6.3;t+0.05}{(1-sin(5*t))*r*l*sin(t)/2+p*4+l/4;(1-sin(5*t))*r*l*cos(t)/2-p/2+g/2+f*2}
+color 180 90 0
+ang_origin 33 45
+ang_draw_parametric_curve t {0;t<6.3;t+0.05}{(1-sin(5*t))*r*l*sin(t)/2+p*4+l/4;(1-sin(5*t))*r*l*cos(t)/2-p/2+g/2+f*2}
+
+expression i {i+1}
+}
+%drske cveca
+linethickness 0.7
+color 50 50 50
+ang_origin 17 -3
+%desna
+ang_draw_parametric_curve t {0;t<1.7;t+0.05}{t + p*4+l/4; -p/2+g/2+(f/2.2+1)*pow(t,3)}
+ang_origin 30 -3
+%leva
+ang_draw_parametric_curve t {-1.71;t<0;t+0.1}{t+p*4+l/4 ; -p/2+g/2-(f/2.2+1)*pow(t,3)}
+ang_origin 24 -3
+%srednja
+ang_draw_parametric_curve t {0;t<6.5;t+0.1}{p*4+l/4 ; -p/2+f/2+g/2+(f/4+1)*t}
+linethickness 0.16
+%leptirici
+%levi okvir
+expression r { 1 }
+point S1 8 65
+point S2 50 50
+distance d S1 S2
+getx s S
+expression a { 90 + atan(15/42) }
+expression x { d*cos(s/80 + a) + 50 }
+expression y { d*sin(s/80 + a) + 50 }
+ang_origin x y
+%ang_origin 8 65
+color 20 10 40
+ang_draw_parametric_curve t {0;t<37.7;t+0.05}{1*sin(t) * ( pow(e, cos(t)) - 2*cos(4*t) - pow(sin(t/12), 5) )*r/6 + p*8.2; 1*cos(t) * ( pow(e, cos(t)) - 2*cos(4*t) - pow(sin(t/12), 5) ) *r/6}
+
+point S1 48 60
+distance d S1 S2
+expression a { 90 + atan(5/2) }
+expression x1 { d*cos(s/80 + a) + 50 }
+expression y1 { d*sin(s/80 + a) + 50 }
+
+%desni okvir
+%ang_origin 48 60
+ang_origin x1 y1
+
+ang_draw_parametric_curve t {0;t<37.7;t+0.05}{1*sin(t) * ( pow(e, cos(t)) - 2*cos(4*t) - pow(sin(t/12), 5) )*r/6 +p*8.2; 1*cos(t) * ( pow(e, cos(t)) - 2*cos(4*t) - pow(sin(t/12), 5) ) *r/6}
+
+%srednji okvir
+point S1 30 84
+distance d S1 S2
+expression a { 90 + atan(34/20) }
+expression x2 { d*cos(-s/80 + a) + 50 }
+expression y2 { d*sin(-s/80 + a) + 50 }
+ang_origin x2 y2
+%ang_origin 30 84
+
+ang_draw_parametric_curve t {0;t<37.7;t+0.05}{1*sin(t) * ( pow(e, cos(t)) - 2*cos(4*t) - pow(sin(t/12), 5) )*r/6+p*8.2 ; 1*cos(t) * ( pow(e, cos(t)) - 2*cos(4*t) - pow(sin(t/12), 5) ) *r/6}
+
+%levi ljubicasto
+expression r { r-0.2 }
+%ang_origin 8 65
+ang_origin x y
+color 100 10 140
+ang_draw_parametric_curve t {0;t<37.7;t+0.05}{1*sin(t) * ( pow(e, cos(t)) - 2*cos(4*t) - pow(sin(t/12), 5) )*r/6+p*8.2 ; 1*cos(t) * ( pow(e, cos(t)) - 2*cos(4*t) - pow(sin(t/12), 5) ) *r/6}
+
+%desni ljubicasto
+%ang_origin 48 60
+ang_origin x1 y1
+
+ang_draw_parametric_curve t {0;t<37.7;t+0.05}{1*sin(t) * ( pow(e, cos(t)) - 2*cos(4*t) - pow(sin(t/12), 5) )*r/6+p*8.2 ; 1*cos(t) * ( pow(e, cos(t)) - 2*cos(4*t) - pow(sin(t/12), 5) ) *r/6}
+
+%srednji ljubicasto
+%ang_origin 30 84
+ang_origin x2 y2
+
+ang_draw_parametric_curve t {0;t<37.7;t+0.05}{1*sin(t) * ( pow(e, cos(t)) - 2*cos(4*t) - pow(sin(t/12), 5) )*r/6+p*8.2 ; 1*cos(t) * ( pow(e, cos(t)) - 2*cos(4*t) - pow(sin(t/12), 5) ) *r/6}
+expression p {p+1}
+expression i {1}
+expression r {1}
+
+}
+animation_frames 10 5
+
+
+
+%sunce
+linethickness 0.7
+ang_origin 0 95
+color  255 255 102
+number k 1
+expression r { 1 }
+while { k<100 }
+{
+ang_draw_parametric_curve t {0;t<6.3;t+0.1}{r*cos(t);r*sin(t)}
+expression k {k+1}
+expression r {r-0.01}
+}
+
+%brdo
+%color 0 200 0
+%expression k {1}
+%ang_origin 140 0
+%expression r {5}
+%while { k<100 }
+%{
+%ang_draw_parametric_curve t {-3.5;t<1.55;t+0.1}{t;-1/2*t*t-t+3-r}
+%expression r {r-0.05}
+%expression k {k+1}
+%}
